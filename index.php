@@ -216,18 +216,59 @@ if(isset($_GET['dl'])){
 
 
 
-    <!-- Registration Modal -->
+    <!-- FAQS-->
       <div class="modal fade" id="faqs" role="dialog">
         <div class="modal-dialog">
         
-          <!-- Modal content: Registration Form-->
+          <!-- Modal content: FAQS-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Register You Junkshop</h4>
             </div>
             <div class="modal-body">
-              </form>
+                <div class="panel panel-success">  <!-- faq1 -->
+      
+                  <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
+                      Q1: What is Golden Garbage?
+                    </a>
+                  </h4>
+                  </div>
+                 <!-- answer -->
+                <div id="faq1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Golden Garbage allows you to view nearby junkshops around you.
+                    It also allows you to view the prices of the junks the 
+                    specific junkshops accept.
+                  </div>
+                </div>
+
+                <div class="panel panel-success">  <!-- faq1 -->
+      
+                  <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
+                      Q1: What is Golden Garbage?
+                    </a>
+                  </h4>
+                  </div>
+                 <!-- answer -->
+                <div id="faq1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Golden Garbage allows you to view nearby junkshops around you.
+                    It also allows you to view the prices of the junks the 
+                    specific junkshops accept.
+                  </div>
+                </div>
+
+                
+
+
+
+
+
             </div>
             <div class="modal-footer">
               <button type="button" class="modalbtn modalbtn-default" data-dismiss="modal">Submit</button>
