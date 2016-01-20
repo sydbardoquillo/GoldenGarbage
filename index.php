@@ -178,7 +178,7 @@ if(isset($_GET['dl'])){
                   </div>
                   <div class="form-group">
                     <label for="js_contact">Contact(s):</label>
-                    <input type="number" class="form-control" id="js_contacts" placeholder="Contact number(s)">
+                    <input type="text" class="form-control" id="js_contacts" placeholder="Contact number(s)">
                   </div>
                   <div class="form-group">
                     <label for="js_name">Junkshop Name:</label>
