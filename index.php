@@ -86,10 +86,10 @@ if(isset($_GET['dl'])){
                         <a class="page-scroll" href="#devs">Devs</a>
                     </li>
                     <li>
-                        <a data-toggle="modal" data-target="#registration">Register</a>
+                        <a data-toggle="modal" data-target="#RegisterModal">Reg</a>                        
                     </li>
                     <li>
-                        <a data-toggle="modal" data-target="#faqs">FAQs <span class="badge">11</span></a><br>
+                        <a data-toggle="modal" data-target="#faqsModal">FAQs<span class="badge" >11</span></a>                        
                     </li>
                 </ul>
             </div>
@@ -143,8 +143,10 @@ if(isset($_GET['dl'])){
         </div>
     </section>
 
+  
+
     <!-- Contact Section -->
-    <section id="devs" class="container content-section text-center">
+    <section id="devs" class="container content-section text-center" style=" padding-bottom: 74px;">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>The Developers</h2>
@@ -154,19 +156,17 @@ if(isset($_GET['dl'])){
         </div>
     </section>
 
-
-
-    <!-- Registration Modal -->
-      <div class="modal fade" id="registration" role="dialog">
+    <!-- Modal -->
+      <div class="modal fade" id="RegisterModal" role="dialog" >
         <div class="modal-dialog">
         
-          <!-- Modal content: Registration Form-->
-          <div class="modal-content">
-            <div class="modal-header">
+          <!-- RegisterModal content-->
+          <div class="modal-content" style="color:white;">
+            <div class="modal-header" style="background-color:#649502;">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Register You Junkshop</h4>
+              <h4 class="modal-title">Register your junkshop!</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color:#7ab800;">
               <form role="form">
                   <div class="form-group">
                     <label for="js_owner">Junkshop Owner:</label>
@@ -178,7 +178,7 @@ if(isset($_GET['dl'])){
                   </div>
                   <div class="form-group">
                     <label for="js_contact">Contact(s):</label>
-                    <input type="text" class="form-control" id="js_contacts" placeholder="Contact number(s)">
+                    <input type="number" class="form-control" id="js_contacts" placeholder="Contact number(s)">
                   </div>
                   <div class="form-group">
                     <label for="js_name">Junkshop Name:</label>
@@ -196,13 +196,11 @@ if(isset($_GET['dl'])){
                     <label for="confirmpwd">Confirm Password:</label>
                     <input type="password" class="form-control" id="confirmpwd" placeholder="Confirm">
                   </div>
-                   <div class="form-group col-sm-offset-2"> 
-                           <div class="checkbox">
-                        <label><input type="checkbox"> By check this box, I agree with the terms and conditions</label>
-                      </div>
+                  
+                  <div class="checkbox">
+                    <label><input type="checkbox"> By checking this box, you accept the terms and conditions</label>
                   </div>
-                 
-                </form>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="modalbtn modalbtn-default" data-dismiss="modal">Submit</button>
@@ -211,74 +209,11 @@ if(isset($_GET['dl'])){
           
         </div>
       </div>
+
       
-    </div>
 
 
 
-    <!-- FAQS-->
-      <div class="modal fade" id="faqs" role="dialog">
-        <div class="modal-dialog">
-        
-          <!-- Modal content: FAQS-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Register You Junkshop</h4>
-            </div>
-            <div class="modal-body">
-                <div class="panel panel-success">  <!-- faq1 -->
-      
-                  <div class="panel-heading"> 
-                  <h4 class="panel-title"> <!-- title 2 -->
-                    <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
-                      Q1: What is Golden Garbage?
-                    </a>
-                  </h4>
-                  </div>
-                 <!-- answer -->
-                <div id="faq1" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    Golden Garbage allows you to view nearby junkshops around you.
-                    It also allows you to view the prices of the junks the 
-                    specific junkshops accept.
-                  </div>
-                </div>
-
-                <div class="panel panel-success">  <!-- faq1 -->
-      
-                  <div class="panel-heading"> 
-                  <h4 class="panel-title"> <!-- title 2 -->
-                    <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
-                      Q1: What is Golden Garbage?
-                    </a>
-                  </h4>
-                  </div>
-                 <!-- answer -->
-                <div id="faq1" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    Golden Garbage allows you to view nearby junkshops around you.
-                    It also allows you to view the prices of the junks the 
-                    specific junkshops accept.
-                  </div>
-                </div>
-
-                
-
-
-
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="modalbtn modalbtn-default" data-dismiss="modal">Submit</button>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-      
-    
 
 
 
@@ -288,6 +223,230 @@ if(isset($_GET['dl'])){
             <p>&copy; QuadCore&trade;, a Team Spectrum subsidiary<br>Cebu Institute of Technology - University<br>2015</p>
         </div>
     </footer>
+
+
+
+
+
+    <!-- Modal -->
+      <div class="modal fade" id="faqsModal" role="dialog" >
+        <div class="modal-dialog">
+        
+          <!-- RegisterModal content-->
+          <div class="modal-content" style="color:white;">
+            <div class="modal-header" style="background-color:#649502;">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"><span style="color:#e3c432;">Golden</span><span style="color:#7ab800;"> Garbage</span><span style="color:white;"> FAQs</span></h4>
+            </div>
+            <div class="modal-body" style="background-color:#7ab800;">
+              
+              <div class="panel panel-success">  <!-- faq1 -->
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 1 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
+                      Q1: What is Golden Garbage?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq1" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    Golden Garbage allows you to view nearby junkshops around you.
+                    It also allows you to view the prices of the junks the 
+                    specific junkshops accept.
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq2">
+                      Q2:That's great! But how does it work?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq2" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    Golden Garbage has embedded Google Maps for 
+                    you to view nearby junkshops registered to Golden 
+                    Garbage Community. The app will automatically detect your current 
+                    location and provide you the path to the junkshop nearest to you.
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq3">
+                       Q3: Do I need to have my own account for this app?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq3" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    No need. But there are features that won't be 
+                    available if you don't create an account for your 
+                    Golden Garbage.
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq4">
+                      Q4: What benefits do I get when I create my own account?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq4" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    You will be able to use the following features of the app:
+                    Search - you will be able to directly search for a junk item and see the junkshops that accepts the searched item with the corresponding prices.
+                    Rate and Review - you will be able to review the service of a junkshop, just like in the Google Play rate and review.
+                    Auction - you will be able to make an auction with your junk items.
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq5">
+                      Q5: Auction sounds interesting! How does it work?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq5" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    Auction is simply posting any of your junk items under your name.
+                     Interested junkshops will place their bid and it is up to you to select which bidder you wish to close the deal with 
+                    (or simply, select the junkshop you wish to sell your item).
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq6">
+                     Q6: How can I auction my item?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq6" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    A floating mallet appears at the bottom right corner once you enter 
+                    the map interface of the application. 
+                    Simply click the icon, and a form will appear. 
+                    Just fill-up the form and click Auction.
+    
+                    <p>Please take into consideration that you should
+                    auction junk items in large quantities. Do make a reasonable 
+                    auction in order draw the owners to make a bid for your items.</p>
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq7">
+                      Q7: Do I have to pay to auction?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq7" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    Absolutely not. Any registered user can be able to make 
+                    an auction anytime for free as the floating 
+                    mallet is always avilable once you, user get to the map interface.
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq8">
+                      Q8: Can I know who bid for my items?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq8" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    Yes, as a matter of fact, junkshop owners who place a bid 
+                    for your auction will be listed below the from. 
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq9">
+                      Q9: How to make sure that the bidder is an authentic junkshop?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq9" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    All junkshop owners listed that are seen in the map are 
+                    required to register for the Golden Garbage community. Prior to be officially
+                    part of the community, the registering junkshoop are
+                    given authentication code to give assurance of the authenticity of the junkshop.
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq10">
+                      Q10: What happens if an item doesn't sell?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq10" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    To be able to make a succesful deal to to bidders, you, 
+                    user should make a reasonable price for your item. 
+                    You might also consider lowering your price to give interest to the junkshop owners.
+                    However, in any case you waren't able find bidders for your items, you be notified 
+                    that your post will be removed and so you can somehow make another item to auction. 
+                  </div>
+                </div>
+
+                <div class="panel-heading"> 
+                  <h4 class="panel-title"> <!-- title 2 -->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#faq11">
+                      Q11: What conditions should my items be in?
+                    </a>
+                  </h4>
+                  </div>
+
+                 <!-- answer -->
+                <div id="faq11" class="panel-collapse collapse">
+                  <div class="panel-body" style="color:black;">
+                    It is necessary that items are in really good, and presentable condition for this can add 
+                    up a higher possiblities that more junkshop are going to place a bid for your item.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="modalbtn modalbtn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -300,6 +459,8 @@ if(isset($_GET['dl'])){
   
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
+
+
 
 </body>
 
