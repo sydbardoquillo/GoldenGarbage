@@ -203,6 +203,7 @@ if(isset($_GET['dl'])){
               </form>
             </div>
             <div class="modal-footer">
+              <a data-toggle="modal" data-target="#loginModal" class="b" style="padding-right: 403px;" data-dismiss="modal">Admin Log-in</a>
               <button type="button" class="modalbtn modalbtn-default" data-dismiss="modal">Submit</button>
             </div>
           </div>
@@ -224,11 +225,45 @@ if(isset($_GET['dl'])){
         </div>
     </footer>
 
+    <!--Login Modal -->
+      <div class="modal fade" id="loginModal" role="dialog" >
+        <div class="modal-dialog">
+        
+          <!-- RegisterModal content-->
+          <div class="modal-content" style="color:white;">
+            <div class="modal-header" style="background-color:#649502;">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Register your junkshop!</h4>
+            </div>
+            <div class="modal-body" style="background-color:#7ab800;">
+              <form role="form">
+                  <div class="form-group">
+                    <label for="admin">Admin:</label>
+                    <input type="text" class="form-control" id="admin" placeholder="Enter admin username">
+                  </div>
+                                   
+                  <div class="form-group">
+                    <label for="admin_pwd">Password:</label>
+                    <input type="password" class="form-control" id="admin_pwd" placeholder="Enter Password">
+                  </div>
+                  
+                  
+                  <div class="checkbox">
+                    <label><input type="checkbox"> Remember Me</label>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="modalbtn modalbtn-default"><a href="/goldengarbage.com/adminpage.php">Log-in</a></button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
 
 
 
-
-    <!-- Modal -->
+    <!-- faqs Modal -->
       <div class="modal fade" id="faqsModal" role="dialog" >
         <div class="modal-dialog">
         
