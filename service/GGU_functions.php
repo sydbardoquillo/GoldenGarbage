@@ -143,12 +143,12 @@
 	    	if ($junkshopID != false)
 	    	{
 	    		$numberOfComments = $this->RequestReviewCount();
+
 	    		if($numberOfComments != false)
 	    		{
 	    			$commentID = $numberOfComments + 1;
-	    			$dateToday = date("Y-m-d");
-	    			mysql_query("INSERT INTO tb_js_reviews VALUES ('$commentID','$junkshopID','$userID',
-	    				'$userRating','$userComment','$dateToday')");
+	    			$dateToday = date("Y-m-d");	    			
+	    			mysql_query("UPDATE tb_js_reviews SET tb_js_reviews.js_star = '$userRating', tb_js_reviews.js_comment = '$userComment', tb_js_reviews.comment_date = '$dateToday' WHERE tb_js_reviews.js_ID = '$junkshopID' AND tb_js_reviews.us_ID = '$userID'");	    			
 	    			return true;
 	    		}
 	    		else
