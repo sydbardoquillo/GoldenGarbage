@@ -11,7 +11,7 @@
 	 * @version    1.1.0.1
 	 */
 
-	define("DB_HOST", "rhcloud.com");
+	define("DB_HOST", "goldengarbage-mehehe.rhcloud.com");
 	define("DB_USER", "adminL1tkRra");
 	define("DB_PASSWORD", "6ndtuFMM1F_1");
 	define('DB_DATABASE', "goldengarbage");
