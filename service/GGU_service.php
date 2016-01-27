@@ -14,15 +14,15 @@
 	* @version    2.2.0.1
 	*/
 
-	if (isset($_GET['tag']) && $_GET['tag'] != '') {
-	    $tag = $_GET['tag'];
+	if (isset($_POST['tag']) && $_POST['tag'] != '') {
+	    $tag = $_POST['tag'];
 		require_once __DIR__ . '/GGU_functions.php';
 	    $DBFunction = new DB_Functions();
 	    $response = array("ErrorStatus" => FALSE);
 
 	    if ($tag == 'requestLogin') {
-	   		$username = $_GET['username'];
-	   		$password = $_GET['password'];
+	   		$username = $_POST['username'];
+	   		$password = $_POST['password'];
 	   		$reply = $DBFunction->RequestLogin($username, $password);
 	   		if ($reply == FALSE) {
 	            $response["ErrorStatus"] = TRUE;
@@ -35,10 +35,10 @@
 	    }
 
 	    else if ($tag == 'requestRegister') {
-	    	$firstname = $_GET['firstname'];
-	   		$lastname = $_GET['lastname'];
-	   		$username = $_GET['username'];
-	   		$password = $_GET['password'];
+	    	$firstname = $_POST['firstname'];
+	   		$lastname = $_POST['lastname'];
+	   		$username = $_POST['username'];
+	   		$password = $_POST['password'];
 	   		if ($DBFunction->IsUserExisted($firstname, $lastname)) {
 				$response["ErrorStatus"] = TRUE;
 	            $response["ErrorMessage"] = "Sorry, but we might think that you have already an account.";
@@ -79,7 +79,7 @@
 	    }
 
 	    else if ($tag == 'requestJunkshopInfo') {
-			$junkshopName = $_GET['junkshopName'];
+			$junkshopName = $_POST['junkshopName'];
 	    	$junkshopID = $DBFunction->RequestJunkshopID($junkshopName);
 	    	if($junkshopID == FALSE)
 	    	{
@@ -135,10 +135,10 @@
 		}
 
 		else if ($tag == 'requestPostReview') {
-	    	$userID = $_GET['userID'];
-	    	$junkshopName = $_GET['junkshopName'];
-	    	$userComment = $_GET['userComment'];
-	    	$userRating = $_GET['userRating'];
+	    	$userID = $_POST['userID'];
+	    	$junkshopName = $_POST['junkshopName'];
+	    	$userComment = $_POST['userComment'];
+	    	$userRating = $_POST['userRating'];
 			if ($DBFunction->requestPostReview($userID, $junkshopName, $userComment, $userRating))
 			{
 				$response["ErrorStatus"] = FALSE;
@@ -153,7 +153,7 @@
 		}
 
 		else if ($tag == 'requestSearchItem') {
-	    	$itemName = $_GET['itemName'];
+	    	$itemName = $_POST['itemName'];
 	    	$junkshopSearchItems = $DBFunction->requestSearchItem($itemName);
 	    	if($junkshopSearchItems == FALSE)
 		    {
