@@ -156,7 +156,7 @@ if(isset($_GET['dl'])){
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Registration Modal -->
       <div class="modal fade" id="RegisterModal" role="dialog" >
         <div class="modal-dialog">
         
