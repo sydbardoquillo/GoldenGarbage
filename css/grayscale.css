@@ -51,6 +51,19 @@ a {
     transition: all .2s ease-in-out;
 }
 
+.b {
+    color: #FFFFFF;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+a.b:hover,
+a.b:focus {
+    text-decoration: none;
+    color: #e3c432;
+}
+
 a:hover,
 a:focus {
     text-decoration: none;
