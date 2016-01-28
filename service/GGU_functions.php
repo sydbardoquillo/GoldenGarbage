@@ -17,6 +17,7 @@
 	 
 	    private $db;
 
+
 	    function __construct() {
 	        require_once __DIR__ . '/GG_connect.php';
 	        $this->db = new DB_Connect();
@@ -242,15 +243,21 @@
 	    		return $userEntity;
 	    	}
 	    	else
+	    	{
 	    		return false;
+	    	}
 	    }
 
 	     public function IsUserIDExist($userID){
 	    	$result = mysql_query("SELECT * FROM tb_us_info WHERE tb_us_info.us_ID = '$userID'");
 	    	if(mysql_num_rows($result) != 0)
+	    	{
 	        	return true;
+	        }
 	        else
+	        {
 	        	return false;
+	        }
 	    }
 
 	    public function RequestUserUpdate($userID, $firstname, $lastname, $address){
@@ -292,9 +299,5 @@
 	            return false;
 	        }
 	    }
-
-	    public function RequestPostAuction
-
-	    
 	}
 ?>
