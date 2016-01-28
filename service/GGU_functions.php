@@ -11,7 +11,8 @@
      * @copyright  Team Spectrum
      * @version    2.2.0.1
      */
-
+	date_default_timezone_set('Asia/Manila');
+	
 	class DB_Functions {
 	 
 	    private $db;
@@ -164,7 +165,7 @@
 	    	{
 	    		$numberOfComments = $this->RequestReviewCount();
 				$commentID = $numberOfComments + 1;
-	    		$dateToday = date("Y-m-d");	 
+	    		$dateToday = date("Y-m-d H:i:s");	 
 
 	    		if($numberOfComments != false)
 	    		{

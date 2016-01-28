@@ -14,7 +14,7 @@
 	* @copyright  Team Spectrum
 	* @version    2.2.0.1
 	*/
-
+	
 	if (isset($_POST['tag']) && $_POST['tag'] != '') {
 	    $tag = $_POST['tag'];
 		require_once __DIR__ . '/GGU_functions.php';
@@ -138,7 +138,7 @@
 	    	$junkshopName = $_POST['junkshopName'];
 	    	$userComment = $_POST['userComment'];
 	    	$userRating = $_POST['userRating'];
-			if ($DBFunction->requestPostReview($userID, $junkshopName, $userComment, $userRating))
+			if ($DBFunction->RequestPostReview($userID, $junkshopName, $userComment, $userRating))
 			{
 				$response["ErrorStatus"] = FALSE;
 				$response["RespondMessage"] = "Comment has been added sucessfully.";
