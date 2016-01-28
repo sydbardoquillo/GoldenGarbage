@@ -14,7 +14,7 @@
 	* @copyright  Team Spectrum
 	* @version    2.2.0.1
 	*/
-	
+
 	if (isset($_POST['tag']) && $_POST['tag'] != '') {
 	    $tag = $_POST['tag'];
 		require_once __DIR__ . '/GGU_functions.php';
@@ -227,6 +227,9 @@
 				$response["RespondMessage"] = "Password changed.";
 			}
 			echo json_encode($response);
+		}
+		else if($tag == 'requestPostAuction'){
+			
 		}
 
 	    else {

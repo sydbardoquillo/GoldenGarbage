@@ -12,7 +12,7 @@
      * @version    2.2.0.1
      */
 	date_default_timezone_set('Asia/Manila');
-	
+
 	class DB_Functions {
 	 
 	    private $db;
@@ -292,6 +292,8 @@
 	            return false;
 	        }
 	    }
+
+	    public function RequestPostAuction
 
 	    
 	}
