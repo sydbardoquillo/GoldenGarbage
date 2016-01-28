@@ -8,7 +8,7 @@
 	* Response will be JSON data.
 	*
 	* @category   GoldenGarbageServer
-	* @package    com.spectrum.ecoapp.goldengabage
+	* @package    com.spectrum.ecoapp.goldengarbage
 	* @author     Arreglo, Charlie Ahl F. <arreglo.charlieahl@live.com>
 	* @copyright  Team Spectrum
 	* @version    2.1.0.0

@@ -10,6 +10,7 @@
 	* @category   GoldenGarbageServer
 	* @package    com.spectrum.ecoapp.goldengabage
 	* @author     Arreglo, Charlie Ahl F. <arreglo.charlieahl@live.com>
+	* @author     Sotto, Antonio Jr. O. <antoniosottojr@gmail.com> 	
 	* @copyright  Team Spectrum
 	* @version    2.2.0.1
 	*/
@@ -38,15 +39,13 @@
 	    	$firstname = $_POST['firstname'];
 	   		$lastname = $_POST['lastname'];
 	   		$username = $_POST['username'];
+	   		$address = $_POST['address'];
 	   		$password = $_POST['password'];
-	   		if ($DBFunction->IsUserExisted($firstname, $lastname)) {
+	   		if ($DBFunction->IsUsernameExisted($username)) {
 				$response["ErrorStatus"] = TRUE;
-	            $response["ErrorMessage"] = "Sorry, but we might think that you have already an account.";
-	   		} else if ($DBFunction->IsUsernameExisted($username)) {
-				$response["ErrorStatus"] = TRUE;
-	            $response["ErrorMessage"] = "Sorry, username has already been taken.";
+	            $response["ErrorMessage"] = "Sorry, username has already been taken. Please try another.";
 	   		} else {
-	   			$reply = $DBFunction->RequestRegister($firstname, $lastname, $username, $password);
+	   			$reply = $DBFunction->RequestRegister($firstname, $lastname, $username, $address, $password);
 	   			if ($reply == FALSE) {
 	            $response["ErrorStatus"] = TRUE;
 	            $response["ErrorMessage"] = "Sorry, there's a problem within our service. Please, try again later.\n(Error: 4RE-G04)";
@@ -171,6 +170,62 @@
 				}
 			    $response["SearchResult"] = $junkshopSearchListData;
 		    }
+			echo json_encode($response);
+		}
+
+		else if($tag == 'requestUserInfo'){
+			$userID = $_POST['userID'];
+			$userInfo = $DBFunction->RequestUserInfo($userID);
+			if($userInfo == FALSE)
+			{
+				$response["ErrorStatus"] = TRUE;
+		        $response["ErrorMessage"] = "User not found";
+			}
+			else
+			{
+				$response["FirstName"] = $userInfo["us_firstname"];
+				$response["LastName"] = $userInfo["us_lastname"];
+				$response["Address"] = $userInfo["us_address"];
+				   
+			}
+			echo json_encode($response);
+		}
+
+		else if($tag == 'requestUserUpdate'){
+			$userID = $_POST['userID'];
+			$us_firstname  = $_POST['us_firstname'];
+			$us_lastname = $_POST['us_lastname'];
+			$us_address = $_POST['us_address'];
+			$userUpdate = $DBFunction->RequestUserUpdate($userID, $us_firstname, $us_lastname, $us_address);
+			if($userUpdate == FALSE)
+			{
+				$response["ErrorStatus"] = TRUE;
+		        $response["ErrorMessage"] = "Update Error. User does not exist. \n(Error: 4US-UUF)"; /*UserID was not found*/
+			}
+			else
+			{
+
+				$response["ErrorStatus"] = FALSE;
+				$response["RespondMessage"] = "Profile updated successfully.";
+			}
+			echo json_encode($response);
+		}
+		else if($tag == 'requestPasswordUpdate'){
+			$userID = $_POST['userID'];
+			$password = $_POST['password'];
+			$newPassword = $_POST['new_password'];
+			$passUpdate = $DBFunction->RequestPasswordUpdate($userID, $password, $newPassword);
+			if($passUpdate == FALSE)
+			{
+				$response["ErrorStatus"] = TRUE;
+		        $response["ErrorMessage"] = "Password update failed. \n(Error: 4US-UPF)";/*UserID and Password mismatch*/
+			}
+			else
+			{
+
+				$response["ErrorStatus"] = FALSE;
+				$response["RespondMessage"] = "Password changed.";
+			}
 			echo json_encode($response);
 		}
 

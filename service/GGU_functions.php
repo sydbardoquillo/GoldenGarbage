@@ -5,10 +5,11 @@
      * File to handle all connections to the database.
      *
      * @category   GoldenGarbageServer
-     * @package    com.spectrum.ecoapp.goldengabage
+     * @package    com.spectrum.ecoapp.goldengarbage
      * @author     Arreglo, Charlie Ahl F. <arreglo.charlieahl@live.com>
+     * @author     Sotto, Antonio Jr. O. <antoniosottojr@gmail.com> 	
      * @copyright  Team Spectrum
-     * @version    2.1.0.1
+     * @version    2.2.0.1
      */
 
 	class DB_Functions {
@@ -38,7 +39,7 @@
 	        }
 	    }
 
-	    public function RequestRegister($firstname, $lastname, $username, $password) {
+	    public function RequestRegister($firstname, $lastname, $username, $address, $password) {
 	    	$counter = mysql_query("SELECT * FROM tb_us_account");
 			$accountNumber = mysql_num_rows($counter) + 1;
 			$accountID = "GGU" . $accountNumber;
@@ -47,7 +48,7 @@
 	        $encrypted_password = $hash["encrypted"];
 	        $ecokey = $hash["ecokey"];
 
-	    	$result = mysql_query("INSERT INTO tb_us_info VALUES ('$accountID','$firstname','$lastname')");
+	    	$result = mysql_query("INSERT INTO tb_us_info VALUES ('$accountID','$firstname','$lastname', '$address')");
 	    	$result = mysql_query("INSERT INTO tb_us_account VALUES ('$accountID','$username','$encrypted_password','$ecokey')");
 
 	        if ($result) {
@@ -72,7 +73,7 @@
 	        	return true;
 	        else
 	        	return false;
-	    }
+	    }	   
 
 	     public function RequestJunkshopList() {
 	    	$result = mysql_query("SELECT tb_js_info.js_name, tb_js_info.js_address, tb_js_info.js_lat , tb_js_info.js_log FROM tb_js_info");
@@ -125,7 +126,7 @@
 	    }
 
 	    public function RequestJunkshopComments($junkshopID) {
-	    	$result = mysql_query("SELECT (SELECT CONCAT(tb_us_info.us_firstname,' ',tb_us_info.us_lastname) FROM tb_us_info WHERE tb_us_info.us_ID=tb_js_reviews.us_ID) AS js_fullname, tb_js_reviews.js_star, tb_js_reviews.js_comment FROM tb_js_reviews WHERE tb_js_reviews.js_ID='$junkshopID' ORDER BY tb_js_reviews.comment_date");
+	    	$result = mysql_query("SELECT (SELECT CONCAT(tb_us_info.us_firstname,' ',tb_us_info.us_lastname) FROM tb_us_info WHERE tb_us_info.us_ID=tb_js_reviews.us_ID) AS js_fullname, tb_js_reviews.js_star, tb_js_reviews.js_comment FROM tb_js_reviews WHERE tb_js_reviews.js_ID='$junkshopID' ORDER BY tb_js_reviews.comment_date DESC");
 	    	if(mysql_num_rows($result) != 0)
 	    	{
 	    		while($junkshopCommentEntity = mysql_fetch_object($result))
@@ -137,19 +138,46 @@
 	    	else
 	    		return false;
 	    }
+
+	    /*function added by AOSJr, 01.29.16*/
+	    public function hasUserReviewed($userID, $junkshopID){
+	    	
+	    	if($junkshopID != false)
+	    	{
+	    		$result = mysql_query("SELECT tb_js_reviews.us_ID FROM tb_js_reviews WHERE tb_js_reviews.js_ID = '$junkshopID' AND tb_js_reviews.us_ID = '$userID'");
+	    		if(mysql_num_rows($result) != 0)
+    			{
+    				return true;
+    			}
+	    		else
+	    		{
+	    			return false;
+	    		}
+
+	    	}
+	    }
 	    
 	    public function RequestPostReview($userID, $junkshopName, $userComment, $userRating) {
 	    	$junkshopID = $this->RequestJunkshopID($junkshopName);
-	    	if ($junkshopID != false)
+	    	$hasUserReviewed = $this->hasUserReviewed($userID, $junkshopID);
+	    	if ($junkshopID != false) 
 	    	{
 	    		$numberOfComments = $this->RequestReviewCount();
+				$commentID = $numberOfComments + 1;
+	    		$dateToday = date("Y-m-d");	 
 
 	    		if($numberOfComments != false)
 	    		{
-	    			$commentID = $numberOfComments + 1;
-	    			$dateToday = date("Y-m-d");	    			
-	    			mysql_query("UPDATE tb_js_reviews SET tb_js_reviews.js_star = '$userRating', tb_js_reviews.js_comment = '$userComment', tb_js_reviews.comment_date = '$dateToday' WHERE tb_js_reviews.js_ID = '$junkshopID' AND tb_js_reviews.us_ID = '$userID'");	    			
-	    			return true;
+	    			if($hasUserReviewed == true) 
+	    			{
+	    				mysql_query("UPDATE tb_js_reviews SET tb_js_reviews.js_star = '$userRating', tb_js_reviews.js_comment = '$userComment', tb_js_reviews.comment_date = '$dateToday' WHERE tb_js_reviews.js_ID = '$junkshopID' AND tb_js_reviews.us_ID = '$userID'");	    			
+	    				return true;
+	    			}
+	    			else
+	    			{
+	    				mysql_query("INSERT INTO tb_js_reviews VALUES ('$commentID','$junkshopID','$userID', '$userRating','$userComment','$dateToday')");
+	    				return true;
+	    			}
 	    		}
 	    		else
 	    		{
@@ -161,6 +189,7 @@
 	    		return false;
 	    	}
 	    }
+
 
 	    public function RequestReviewCount() {
 	    	$result = mysql_query("SELECT * FROM tb_js_reviews");
@@ -202,5 +231,67 @@
 	        $hash = base64_encode(sha1($password . $ecokey, true) . $ecokey);
 	        return $hash;
 	    }
+
+	    /*function added by AOSJR, 01.28.16*/
+	    public function RequestUserInfo($userID){
+	    	$result = mysql_query("SELECT * FROM tb_us_info WHERE tb_us_info.us_ID = '$userID'");
+	    	if(mysql_num_rows($result) != 0)
+	    	{
+	    		$userEntity = mysql_fetch_array($result);
+	    		return $userEntity;
+	    	}
+	    	else
+	    		return false;
+	    }
+
+	     public function IsUserIDExist($userID){
+	    	$result = mysql_query("SELECT * FROM tb_us_info WHERE tb_us_info.us_ID = '$userID'");
+	    	if(mysql_num_rows($result) != 0)
+	        	return true;
+	        else
+	        	return false;
+	    }
+
+	    public function RequestUserUpdate($userID, $firstname, $lastname, $address){
+	    	if($this->IsUserIDExist($userID) == false)
+	    	{
+	    		return false;
+	    	}
+	    	else
+	    	{
+	    		$result = mysql_query("UPDATE tb_us_info SET tb_us_info.us_firstname = '$firstname', tb_us_info.us_lastname = '$lastname', tb_us_info.us_address = '$address' WHERE tb_us_info.us_ID = '$userID'");
+	    		return true;
+	    	}
+	    }
+
+	    public function RequestPasswordUpdate($userID, $password, $newPassword){
+	    	$result = mysql_query("SELECT * FROM tb_us_account WHERE tb_us_account.us_ID = '$userID'") or die(mysql_error());
+	        if (mysql_num_rows($result) != 0) {
+	        	$result = mysql_fetch_array($result);
+	            $ecokey = $result['js_key'];
+	            $encrypted_password = $result['js_password'];
+	            $hash = $this->checkhashSSHA($ecokey,  $password);
+
+
+	            if ($encrypted_password != $hash) {
+	            	return false;
+	            }
+	            else
+	            {
+	            	$hash_newPass = $this->hashSSHA($newPassword);
+	            	$encrypted_newPass = $hash_newPass["encrypted"];
+	            	$ecokey_new = $hash_newPass["ecokey"];
+
+	            	mysql_query("UPDATE tb_us_account SET tb_us_account.js_password = '$encrypted_newPass', tb_us_account.js_key = '$ecokey_new' WHERE tb_us_account.us_ID= '$userID'");
+	                return true;	            	
+	            }
+	        }
+	        else 
+	        {
+	            return false;
+	        }
+	    }
+
+	    
 	}
 ?>
